@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm
 #=================================================
 
-name: Build_jdcloud_re-sp-01b_without_wifi
+name: Build_jdcloud_w/o_wifi
 
 on:
   repository_dispatch:
