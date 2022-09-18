@@ -8,6 +8,9 @@
 name: Build_jdcloud_lean
 
 on:
+  push:
+    branches:
+      - 'master'
   repository_dispatch:
   workflow_dispatch:
     inputs:
