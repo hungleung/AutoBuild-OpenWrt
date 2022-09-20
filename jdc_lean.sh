@@ -11,6 +11,8 @@ sed -i 's/192.168.1.1/192.168.88.1/g' openwrt/package/base-files/files/bin/confi
 # 修改主机名为 JDC_Mark1
 sed -i 's/OpenWrt/Home/g' openwrt/package/base-files/files/bin/config_generate
 
+sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
+
 #2. Clear the login password
 #sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-settings/files/zzz-default-settings
 
@@ -35,7 +37,7 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 # echo '修补 system.sh 以正常读写 MAC'
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
-sed -i -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot/luci-app-qbittorrent/' -e 's/luci-app-arpbind/luci-app-nfs/' -e 's/luci-app-filetransfer/luci-app-samba4/' -e 's/luci-app-vsftpd/luci-app-minidlna/' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
+sed -i -e 's/coremark//' -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot/luci-app-qbittorrent/' -e 's/luci-app-arpbind/luci-app-nfs/' -e 's/luci-app-filetransfer/luci-app-samba4/' -e 's/luci-app-vsftpd/luci-app-minidlna/' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
 
 #=========================================
 # Target System
