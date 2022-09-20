@@ -37,7 +37,7 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 # echo '修补 system.sh 以正常读写 MAC'
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
-sed -i -e 's/coremark//' -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot/luci-app-qbittorrent/' -e 's/luci-app-arpbind/luci-app-nfs/' -e 's/luci-app-filetransfer/luci-app-samba4/' -e 's/luci-app-vsftpd/luci-app-minidlna/' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
+sed -i -e 's/kmod-nf-nathelper//' -e 's/kmod-nf-nathelper-extra//' -e 's/iptables-mod-extra//' -e 's/kmod-ipt-raw//' -e 's/kmod-tun//' -e 's/ca-certificates//' -e 's/coremark//' -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot/luci-app-qbittorrent/' -e 's/luci-app-arpbind/luci-app-nfs/' -e 's/luci-app-filetransfer/luci-app-samba4/' -e 's/luci-app-vsftpd/luci-app-minidlna/' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
 
 #=========================================
 # Target System
