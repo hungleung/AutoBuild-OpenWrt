@@ -10,7 +10,7 @@ sed -i 's/192.168.1.1/192.168.88.1/g' openwrt/package/base-files/files/bin/confi
 
 # 修改主机名为 JDC_Mark1
 sed -i 's/OpenWrt/Home/g' openwrt/package/base-files/files/bin/config_generate
-
+sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
 sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
 
 #2. Clear the login password
