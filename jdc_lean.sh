@@ -26,7 +26,7 @@ curl --retry 3 -s --globoff "https://gist.githubusercontent.com/1-1-2/335dbc8e13
 
 # fix2 + fix4.2
 # echo '修补 mt7621.mk'
-sed -i '/Device\/adslr_g7/i\define Device\/jdcloud_re-sp-01b\n  \$(Device\/dsa-migration)\n  \$(Device\/uimage-lzma-loader)\n  IMAGE_SIZE := 32448k\n  DEVICE_VENDOR := JDCloud\n  DEVICE_MODEL := RE-SP-01B\n  DEVICE_PACKAGES := lsblk kmod-usb-storage kmod-usb2 kmod-usb3 block-mount kmod-fs-ext4 e2fsprogs fdisk kmod-sdhci-mt7620\nendef\nTARGET_DEVICES += jdcloud_re-sp-01b\n\n' openwrt/target/linux/ramips/image/mt7621.mk
+sed -i '/Device\/adslr_g7/i\define Device\/jdcloud_re-sp-01b\n  \$(Device\/dsa-migration)\n  \$(Device\/uimage-lzma-loader)\n  IMAGE_SIZE := 32448k\n  DEVICE_VENDOR := JDCloud\n  DEVICE_MODEL := RE-SP-01B\n  DEVICE_PACKAGES := lsblk block-mount kmod-fs-ext4 e2fsprogs fdisk kmod-sdhci-mt7620\nendef\nTARGET_DEVICES += jdcloud_re-sp-01b\n\n' openwrt/target/linux/ramips/image/mt7621.mk
 
 # fix3 + fix5.2
 # echo '修补 02-network'
@@ -37,7 +37,7 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 # echo '修补 system.sh 以正常读写 MAC'
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
-sed -i -e 's/kmod-nf-nathelper//' -e 's/kmod-nf-nathelper-extra//' -e 's/iptables-mod-extra//' -e 's/kmod-ipt-raw//' -e 's/kmod-tun//' -e 's/ca-certificates//' -e 's/coremark//' -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot/luci-app-transmission/' -e 's/luci-app-arpbind/luci-app-nfs/' -e 's/luci-app-filetransfer/autosamba/' -e 's/luci-app-vsftpd//' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
+sed -i -e 's/kmod-nf-nathelper//' -e 's/kmod-nf-nathelper-extra//' -e 's/iptables-mod-extra//' -e 's/kmod-ipt-raw//' -e 's/kmod-tun//' -e 's/ca-certificates//' -e 's/coremark//' -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot//' -e 's/luci-app-arpbind//' -e 's/luci-app-filetransfer//' -e 's/luci-app-vsftpd//' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
 
 #=========================================
 # Target System
