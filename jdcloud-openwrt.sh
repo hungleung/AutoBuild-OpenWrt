@@ -5,13 +5,29 @@
 # Author: eSirPlayground
 # Youtube Channel: https://goo.gl/fvkdwm
 #=================================================
+
+# mkdir -p package/helloworld
+for i in "dns2socks" "microsocks" "ipt2socks" "pdnsd-alt" "redsocks2"; do \
+  svn checkout "https://github.com/immortalwrt/packages/trunk/net/$i" "openwrt/package/helloworld/$i"; \
+done
+
+./scripts/feeds update packages
+rm -rf feeds/packages/lang/golang
+svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang openwrt/feeds/packages/lang/golang
+
 #1. Modify default IP
 sed -i 's/192.168.1.1/192.168.88.1/g' openwrt/package/base-files/files/bin/config_generate
 
 # 修改主机名为 JDC_Mark1
 sed -i 's/OpenWrt/Home/g' openwrt/package/base-files/files/bin/config_generate
 sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
-sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
+sed -i 's/\+libiwinfo//' openwrt/feeds/luci/modules/luci-mod-dashboard/Makefile
+sed -i 's/\+libiwinfo-lua \+rpcd-mod-iwinfo//' openwrt/feeds/luci/modules/luci-mod-battstatus/Makefile
+sed -i 's/\+libiwinfo-lua \+rpcd-mod-iwinfo//' openwrt/feeds/luci/modules/luci-mod-network/Makefile
+sed -i 's/\+libiwinfo \+libiwinfo-lua//' openwrt/feeds/luci/modules/luci-mod-status/Makefile
+sed -i 's/wpad-basic-wolfssl//' openwrt/target/linux/ramips/mt7621/target.mk
+sed -i '104d' openwrt/package/system/rpcd/Makefile
+sed -i 's/"title": "udpxy",/"title": "IPTV",/' openwrt/feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
 
 #2. Clear the login password
 #sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-settings/files/zzz-default-settings
@@ -37,13 +53,4 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 # echo '修补 system.sh 以正常读写 MAC'
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
-sed -i -e 's/kmod-nf-nathelper//' -e 's/kmod-nf-nathelper-extra//' -e 's/iptables-mod-extra//' -e 's/kmod-ipt-raw//' -e 's/kmod-tun//' -e 's/ca-certificates//' -e 's/coremark//' -e 's/ddns-scripts_aliyun/luci-app-udpxy/' -e 's/ddns-scripts_dnspod/luci-app-wireguard/' -e 's/luci-app-ddns//' -e 's/luci-app-autoreboot//' -e 's/luci-app-arpbind//' -e 's/luci-app-filetransfer//' -e 's/luci-app-vsftpd//' -e 's/luci-app-accesscontrol//' -e 's/luci-app-nlbwmon//' -e 's/luci-app-wol//' openwrt/include/target.mk
-
-#=========================================
-# Target System
-#=========================================
-# cat >> .config << EOF
-# CONFIG_TARGET_ramips=y
-# CONFIG_TARGET_ramips_mt7621=y
-# CONFIG_TARGET_ramips_mt7621_DEVICE_jdcloud_re-sp-01b=y
-# EOF
+sed -i -e 's/dnsmasq/luci luci-app-ssr-plus luci-app-wireguard luci-proto-ipv6 libip6tc kmod-ipt-nat6 luci-app-upnp luci-app-udpxy/' openwrt/include/target.mk
