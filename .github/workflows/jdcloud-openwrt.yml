@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm
 #=================================================
 
-name: openwrt
+name: Build-jdcloud-openwrt
 
 on:
   repository_dispatch:
