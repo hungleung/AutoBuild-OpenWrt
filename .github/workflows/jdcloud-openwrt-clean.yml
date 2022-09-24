@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm
 #=================================================
 
-name: build-jdcloud-openwrt
+name: build-jdcloud-openwrt-clean
 
 on:
   repository_dispatch:
@@ -23,7 +23,7 @@ on:
      - jdcloud-openwrt
 
   schedule:
-   - cron: 0 */8 * * *
+   - cron: 0 */7 * * *
 
   #watch:
   #  types: [started]
@@ -77,30 +77,20 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
+        # echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
-    #- name: Import external feeds - passwall
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-    #    git clone "your_github_link" package/"your_folder_name"
-
-    #- name: Import external feeds - JerryKuKu Argon
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon-jerrykuku
 
     - name: Configuration Customization - Build_jdcloud
       env:
-        CONFIG_FILE: 'jdcloud-openwrt.config'
+        CONFIG_FILE: 'jdcloud-openwrt-clean.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x ./jdc-openwrt.sh && ./jdc-openwrt.sh
+        chmod +x ./jdc-openwrt-clean.sh && ./jdc-openwrt-clean.sh
         cd openwrt && make defconfig
 
     - name: Download package

@@ -1,19 +1,4 @@
 #!/bin/bash
-#=================================================
-# Description: DIY script
-# Lisence: MIT
-# Author: eSirPlayground
-# Youtube Channel: https://goo.gl/fvkdwm
-#=================================================
-
-# mkdir -p package/helloworld
-for i in "dns2socks" "microsocks" "ipt2socks" "pdnsd-alt" "redsocks2"; do \
-  svn checkout "https://github.com/immortalwrt/packages/trunk/net/$i" "openwrt/package/helloworld/$i"; \
-done
-
-./scripts/feeds update packages
-rm -rf feeds/packages/lang/golang
-svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang openwrt/feeds/packages/lang/golang
 
 #1. Modify default IP
 sed -i 's/192.168.1.1/192.168.88.1/g' openwrt/package/base-files/files/bin/config_generate
@@ -29,14 +14,7 @@ sed -i 's/\+rpcd-mod-iwinfo//' openwrt/feeds/luci/modules/luci-mod-network/Makef
 sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/modules/luci-mod-status/Makefile
 sed -i 's/\+libiwinfo//' openwrt/feeds/luci/modules/luci-mod-status/Makefile
 sed -i 's/wpad-basic-wolfssl//' openwrt/target/linux/ramips/mt7621/target.mk
-sed -i '104d' openwrt/package/system/rpcd/Makefile
 sed -i 's/"title": "udpxy",/"title": "IPTV",/' openwrt/feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
-
-#2. Clear the login password
-#sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-settings/files/zzz-default-settings
-
-#3. Replace with JerryKuKu’s Argon
-#rm openwrt/package/lean/luci-theme-argon -rf
 
 # load dts
 # echo '载入 mt7621_jdcloud_re-sp-01b.dts'
@@ -57,4 +35,4 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 # echo '修补 system.sh 以正常读写 MAC'
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
-sed -i -e 's/dnsmasq/luci luci-app-ssr-plus luci-app-wireguard luci-proto-ipv6 libip6tc kmod-ipt-nat6 luci-app-upnp luci-app-udpxy/' openwrt/include/target.mk
+sed -i -e 's/dnsmasq/luci luci-app-wireguard luci-proto-ipv6 libip6tc kmod-ipt-nat6 luci-app-upnp luci-app-udpxy/' openwrt/include/target.mk
