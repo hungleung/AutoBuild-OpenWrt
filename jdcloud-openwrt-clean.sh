@@ -9,7 +9,7 @@ sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
 sed -i 's/\+libiwinfo//' openwrt/feeds/luci/modules/luci-mod-dashboard/Makefile
 sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/modules/luci-mod-battstatus/Makefile
 sed -i 's/\+rpcd-mod-iwinfo//' openwrt/feeds/luci/modules/luci-mod-battstatus/Makefile
-sed -i 's/\+libiwinfo-lua/' openwrt/feeds/luci/modules/luci-mod-network/Makefile
+sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/modules/luci-mod-network/Makefile
 sed -i 's/\+rpcd-mod-iwinfo//' openwrt/feeds/luci/modules/luci-mod-network/Makefile
 sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/modules/luci-mod-status/Makefile
 sed -i 's/\+libiwinfo//' openwrt/feeds/luci/modules/luci-mod-status/Makefile
