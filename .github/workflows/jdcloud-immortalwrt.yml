@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm
 #=================================================
 
-name: Build_jdc_immortal
+name: Build-jdcloud-immortalwrt
 
 on:
   repository_dispatch:
@@ -18,9 +18,9 @@ on:
   release:
     types: [published]
 
-  # push:
-  #  branches:
-  #    - master
+  push:
+   branches:
+     - master
 
   #schedule:
   #  - cron: 0 8 * * 5
@@ -97,10 +97,10 @@ jobs:
 
     - name: Configuration Customization - Build_jdcloud
       env:
-        CONFIG_FILE: 'jdcloud_gateway.config'
+        CONFIG_FILE: 'jdcloud-immortalwrt.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x ./jdc_immortal.sh && ./jdc_immortal.sh
+        chmod +x ./jdcloud-immortalwrt.sh && ./jdcloud-immortalwrt.sh
         cd openwrt && make defconfig
 
     - name: Download package
