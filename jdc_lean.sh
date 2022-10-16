@@ -12,6 +12,10 @@ sed -i 's/192.168.1.1/192.168.88.1/g' openwrt/package/base-files/files/bin/confi
 sed -i 's/ImmortalWrt/Home/g' openwrt/package/base-files/files/bin/config_generate
 sed -i 's/\+shellsync//' openwrt/package/network/services/ppp/Makefile
 sed -i 's/\+kmod-mppe//' openwrt/package/network/services/ppp/Makefile
+sed -i 's/Dynamic DNS/DDNS/g'  openwrt/feeds/luci/applications/luci-app-ddns/luasrc/controller/ddns.lua
+sed -i 's/KMS Server/KMS/' openwrt/feeds/luci/applications/luci-app-vlmcsd/luasrc/controller/vlmcsd.lua
+sed -i 's/default y/default n/g'  openwrt/feeds/luci/applications/luci-app-turboacc/Makefile
+sed -i '1-3d' openwrt/feeds/luci/applications/luci-app-vlmcsd/po/zh-cn/vlmcsd.po
 sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  openwrt/feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # disable and remove wireless
@@ -26,4 +30,4 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
 # change default package
-sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod luci-app-ddns//' -e 's/luci-app-autoreboot//' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-udpxy/' -e 's/luci-app-accesscontrol luci-app-nlbwmon //' -e 's/luci-app-wol/luci-app-wireguard/'  openwrt/include/target.mk
+sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts-cloudflare/' -e 's/luci-app-upnp luci-app-autoreboot//' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/acme-acmesh-dnsapi/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-wireguard/'  openwrt/include/target.mk
