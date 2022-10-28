@@ -22,12 +22,14 @@ sed -i '1-3d' openwrt/feeds/luci/applications/luci-app-vlmcsd/po/zh-cn/vlmcsd.po
 sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  openwrt/feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # disable and remove wireless
-sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
-sed -i 's/iwinfo//' openwrt/feeds/luci/modules/luci-mod-admin-full/Makefile
-sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
+#sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
+#sed -i 's/iwinfo//' openwrt/feeds/luci/modules/luci-mod-admin-full/Makefile
+#sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
 
 curl --retry 3 -s --globoff "https://gist.githubusercontent.com/1-1-2/335dbc8e138f39fb8fe6243d424fe476/raw/[lean's%20lede]mt7621_jdcloud_re-sp-01b.dts" -o openwrt/target/linux/ramips/dts/mt7621_jdcloud_re-sp-01b.dts
-sed -i '/Device\/adslr_g7/i\define Device\/jdcloud_re-sp-01b\n  \$(Device\/dsa-migration)\n  \$(Device\/uimage-lzma-loader)\n  IMAGE_SIZE := 32448k\n  DEVICE_VENDOR := JDCloud\n  DEVICE_MODEL := RE-SP-01B\n  DEVICE_PACKAGES := lsblk block-mount e2fsprogs fdisk kmod-fs-ext4 kmod-sdhci-mt7620 kmod-usb3\nendef\nTARGET_DEVICES += jdcloud_re-sp-01b\n\n' openwrt/target/linux/ramips/image/mt7621.mk
+#disable wireless
+#sed -i '/Device\/adslr_g7/i\define Device\/jdcloud_re-sp-01b\n  \$(Device\/dsa-migration)\n  \$(Device\/uimage-lzma-loader)\n  IMAGE_SIZE := 32448k\n  DEVICE_VENDOR := JDCloud\n  DEVICE_MODEL := RE-SP-01B\n  DEVICE_PACKAGES := lsblk block-mount e2fsprogs fdisk kmod-fs-ext4 kmod-sdhci-mt7620 kmod-usb3\nendef\nTARGET_DEVICES += jdcloud_re-sp-01b\n\n' openwrt/target/linux/ramips/image/mt7621.mk
+sed -i '/Device\/adslr_g7/i\define Device\/jdcloud_re-sp-01b\n  \$(Device\/dsa-migration)\n  \$(Device\/uimage-lzma-loader)\n  IMAGE_SIZE := 32448k\n  DEVICE_VENDOR := JDCloud\n  DEVICE_MODEL := RE-SP-01B\n  DEVICE_PACKAGES := lsblk block-mount e2fsprogs fdisk kmod-fs-ext4 kmod-sdhci-mt7620 kmod-usb3 kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware wpad-openssl\nendef\nTARGET_DEVICES += jdcloud_re-sp-01b\n\n' openwrt/target/linux/ramips/image/mt7621.mk
 sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setup_macs/,/}/{/ampedwireless,ally-00x19k/i\        jdcloud,re-sp-01b)\n\t\tlan_mac=$(mtd_get_mac_ascii u-boot-env mac)\n\t\twan_mac=$(macaddr_add "$lan_mac" 1)\n\t\tlabel_mac=$lan_mac\n\t\t;;
     }' openwrt/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
