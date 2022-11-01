@@ -36,5 +36,5 @@ sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/
 
 # change default package
 #sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts_cloudflare.com-v4/' -e 's/luci-app-autoreboot/luci-app-udpxy/' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-acme acme-dnsapi acme-deploy acme-notify luci-ssl-openssl/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-turboacc luci-app-wireguard /'  openwrt/include/target.mk
-# add jackett dependency
-sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts_cloudflare.com-v4 icu70 icu-full-data70 libstdcpp6 libintl-full8 procps-ng procps-ng-pgrep coreutils-whoami/' -e 's/luci-app-autoreboot/luci-app-udpxy/' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-acme acme-dnsapi acme-deploy acme-notify luci-ssl-openssl/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-turboacc luci-app-wireguard /'  openwrt/include/target.mk
+# add flexget dependency
+sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts_cloudflare.com-v4 python python-sqlite3 pyyaml python-sqlite python-expat python-openssl python-bzip2 distribute/' -e 's/luci-app-autoreboot/luci-app-udpxy/' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-acme acme-dnsapi acme-deploy acme-notify luci-ssl-openssl/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-turboacc luci-app-wireguard /'  openwrt/include/target.mk
