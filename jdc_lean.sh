@@ -22,9 +22,9 @@ sed -i '1-3d' openwrt/feeds/luci/applications/luci-app-vlmcsd/po/zh-cn/vlmcsd.po
 #sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  openwrt/feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # disable and remove wireless
-sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
-sed -i 's/iwinfo//' openwrt/feeds/luci/modules/luci-mod-admin-full/Makefile
-sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
+#sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
+#sed -i 's/iwinfo//' openwrt/feeds/luci/modules/luci-mod-admin-full/Makefile
+#sed -i 's/wpad-openssl//' openwrt/target/linux/ramips/mt7621/target.mk
 
 curl --retry 3 -s --globoff "https://gist.githubusercontent.com/1-1-2/335dbc8e138f39fb8fe6243d424fe476/raw/[lean's%20lede]mt7621_jdcloud_re-sp-01b.dts" -o openwrt/target/linux/ramips/dts/mt7621_jdcloud_re-sp-01b.dts
 #disable wireless
