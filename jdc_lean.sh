@@ -19,7 +19,7 @@ sed -i 's/_("udpxy")/_("IPTV")/' openwrt/feeds/luci/applications/luci-app-udpxy/
 #sed -i 's/default y/default n/g'  openwrt/feeds/luci/applications/luci-app-turboacc/Makefile
 sed -i '12-15d' openwrt/feeds/luci/applications/luci-app-acme/po/zh-cn/acme.po
 sed -i '1-3d' openwrt/feeds/luci/applications/luci-app-vlmcsd/po/zh-cn/vlmcsd.po
-#sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  openwrt/feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  openwrt/feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # disable and remove wireless
 #sed -i 's/\+libiwinfo-lua//' openwrt/feeds/luci/collections/luci/Makefile
@@ -35,6 +35,6 @@ sed -i -e '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' -e '/ramips_setu
 sed -i 's#key"'\''=//p'\''#& \| head -n1#' openwrt/package/base-files/files/lib/functions/system.sh
 
 # change default package
-sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts_cloudflare.com-v4/' -e 's/luci-app-autoreboot/luci-app-udpxy/' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-acme acme-dnsapi acme-deploy acme-notify luci-ssl-openssl/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-turboacc luci-app-wireguard luci-app-passwall /'  openwrt/include/target.mk
+sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts_cloudflare.com-v4/' -e 's/luci-app-autoreboot/luci-app-udpxy/' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-acme acme-dnsapi acme-deploy acme-notify luci-ssl-openssl/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-turboacc luci-app-wireguard luci-app-ssr-plus luci-app-passwall /'  openwrt/include/target.mk
 # add flexget dependency
 #sed -i -e 's/ddns-scripts_aliyun ddns-scripts_dnspod/ddns-scripts_cloudflare.com-v4 python python-sqlite3 pyyaml python-sqlite python-expat python-openssl python-bzip2 distribute/' -e 's/luci-app-autoreboot/luci-app-udpxy/' -e 's/luci-app-arpbind luci-app-filetransfer luci-app-vsftpd/luci-app-acme acme-dnsapi acme-deploy acme-notify luci-ssl-openssl/' -e 's/luci-app-accesscontrol luci-app-nlbwmon luci-app-turboacc luci-app-wol /luci-app-turboacc luci-app-wireguard /'  openwrt/include/target.mk
