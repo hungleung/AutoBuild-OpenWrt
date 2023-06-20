@@ -8,9 +8,9 @@
 name: CR8808
 
 on:
-  # push:
-  #   branches:
-  #     - 'master'
+   push:
+     branches:
+       - 'master'
   repository_dispatch:
   workflow_dispatch:
     inputs:
