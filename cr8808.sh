@@ -8,10 +8,10 @@
 
 # change default lan address and hostname
 # verified to be working
-sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
-sed -i 's/OpenWrt/Home/g' package/base-files/files/bin/config_generate
-sed -i 's/\+shellsync//' package/network/services/ppp/Makefile
-sed -i 's/\+kmod-mppe//' package/network/services/ppp/Makefile
+#sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
+#sed -i 's/OpenWrt/Home/g' package/base-files/files/bin/config_generate
+#sed -i 's/\+shellsync//' package/network/services/ppp/Makefile
+#sed -i 's/\+kmod-mppe//' package/network/services/ppp/Makefile
 # sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # disable and remove wireless
