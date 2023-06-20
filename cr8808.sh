@@ -8,11 +8,11 @@
 
 # change default lan address and hostname
 # verified to be working
-#sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
-#sed -i 's/OpenWrt/Home/g' package/base-files/files/bin/config_generate
-#sed -i 's/\+shellsync//' package/network/services/ppp/Makefile
-#sed -i 's/\+kmod-mppe//' package/network/services/ppp/Makefile
-# sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+sed -i 's/192.168.1.1/192.168.88.1/g' openwrt/package/base-files/files/bin/config_generate
+sed -i 's/OpenWrt/Home/g' openwrt/package/base-files/files/bin/config_generate
+sed -i 's/\+shellsync//' openwrt/package/network/services/ppp/Makefile
+sed -i 's/\+kmod-mppe//' openwrt/package/network/services/ppp/Makefile
+# sed -i 's/"ShadowSocksR Plus+"/"SSRP+"/'  openwrt/feeds/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # disable and remove wireless
 # sed -i 's/\+libiwinfo-lua//' feeds/luci/collections/luci/Makefile
@@ -26,4 +26,4 @@
 # sed -i 's#key"'\''=//p'\''#& \| head -n1#' package/base-files/files/lib/functions/system.sh
 
 # change default package
-sed -i -e 's/dnsmasq/dnsmasq-full luci-app-udpxy luci-app-passwall luci-app-wireguard luci-ssl-openssl luci-app-acme luci-app-ddns luci-app-upnp acme-dnsapi/' include/target.mk
+sed -i -e 's/dnsmasq/dnsmasq-full luci-app-udpxy luci-app-passwall luci-app-wireguard luci-ssl-openssl luci-app-acme luci-app-ddns luci-app-upnp acme-dnsapi/' openwrt/include/target.mk
